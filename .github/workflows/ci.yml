@@ -1,0 +1,53 @@
+$ vi deploy.nomad
+
+job "app" {
+  datacenters = ["dc1"]
+  type = "service"
+
+  group "app" {
+    count = 3
+
+    update {
+      max_parallel     = 1
+      canary = 3
+      min_healthy_time = "10s"
+      healthy_deadline = "1m"
+      auto_revert      = true
+      auto_promote     = false
+    }
+
+    task "app" {
+      driver = "docker"
+
+      config {
+        image = "docker image 이름"
+        port_map {
+          http = 8080
+        }
+      }
+
+      resources {
+        cpu    = 500 # 500 MHz
+        memory = 250 # 256MB
+
+        network {
+          mbits = 10
+          port "http" {}
+        }
+      }
+
+      service {
+        name = "app"
+        tags = ["app"]
+        port = "http"
+
+        check {
+          name     = "alive"
+          type     = "tcp"
+          interval = "10s"
+          timeout  = "2s"
+        }
+      }
+    }
+  }
+}
