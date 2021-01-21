@@ -20,7 +20,7 @@ public class MemberAcceptanceTest extends AcceptanceTest {
 	public static final String PASSWORD = "password";
 	public static final int AGE = 20;
 
-	@DisplayName("회원 정보를 관리한다.")
+	@DisplayName("회원 정보를 관리한다. ")
 	@Test
 	void manageMember() {
 		// when
