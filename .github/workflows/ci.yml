@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.REPO_SCOPED_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
+          token: ${{secrets.REPO_SCOPED_TOKEN}} # `GitHub_PAT` is a secret that contains your PAT
           submodules: recursive
 
       - name: Set up JDK 1.11
