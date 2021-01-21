@@ -40,4 +40,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: true
-          tags: ambition25/infra_subway:latest
+          tags: ambition25/infra_subway:0.0.1
