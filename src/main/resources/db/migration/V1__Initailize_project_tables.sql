@@ -19,7 +19,7 @@ create table line (
     color varchar(255),
     name varchar(255),
     primary key (id),
-    UNIQUE KEY `line_uniq_index` (`name`),
+    UNIQUE KEY `line_uniq_index` (`name`)
 );
 
 create table member (
@@ -47,20 +47,20 @@ create table station (
     modified_date timestamp,
     name varchar(255),
     primary key (id),
-    UNIQUE KEY `station_uniq_index` (`name`),
+    UNIQUE KEY `station_uniq_index` (`name`)
 );
 
 alter table section
-    add constraint fk_section_line
+    add constraint fkLineId
         foreign key (line_id)
-            references line;
+            references line (id);
 
 alter table section
-    add constraint fk_section_down_station
+    add constraint fkDownStationId
         foreign key (down_station_id)
-            references station;
+            references station (id);
 
 alter table section
-    add constraint fk_section_up_station
+    add constraint fkUpStationId
         foreign key (up_station_id)
-            references station;
+            references station (id);
